@@ -13,6 +13,7 @@ namespace RPSLS
             Game game = new Game();
             game.GetNumberOfPlayers();
             game.DisplayNumberOfPlayers();
+            game.DisplayGameRules();
         }
     }
 }
