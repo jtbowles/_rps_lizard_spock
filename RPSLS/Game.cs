@@ -58,12 +58,14 @@ namespace RPSLS
                     if(playerTwo.gesture == "scissors" || playerTwo.gesture == "lizard")
                     {
                         playerOne.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if(playerTwo.gesture == "paper" || playerTwo.gesture == "spock")
                     {
                         playerTwo.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
@@ -77,12 +79,14 @@ namespace RPSLS
                     if (playerTwo.gesture == "rock" || playerTwo.gesture == "spock")
                     {
                         playerOne.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "scissors" || playerTwo.gesture == "lizard")
                     {
                         playerTwo.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
@@ -96,12 +100,14 @@ namespace RPSLS
                     if (playerTwo.gesture == "paper" || playerTwo.gesture == "lizard")
                     {
                         playerOne.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "rock" || playerTwo.gesture == "spock")
                     {
                         playerTwo.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
@@ -115,12 +121,14 @@ namespace RPSLS
                     if (playerTwo.gesture == "spock" || playerTwo.gesture == "paper")
                     {
                         playerOne.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "rock" || playerTwo.gesture == "scissors")
                     {
                         playerTwo.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
@@ -134,12 +142,14 @@ namespace RPSLS
                     if (playerTwo.gesture == "scissors" || playerTwo.gesture == "rock")
                     {
                         playerOne.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "lizard" || playerTwo.gesture == "paper")
                     {
                         playerTwo.score++;
+                        currentRound++;
                         Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
@@ -283,7 +293,7 @@ namespace RPSLS
             Console.Read();
             GetNumberOfRounds();
 
-            while(currentRound < numberOfRoundsToPlay)
+            while(currentRound <= numberOfRoundsToPlay)
             {
                 if(playerOne.score > numberOfRoundsToPlay / 2 || playerTwo.score > numberOfRoundsToPlay / 2)
                 {
@@ -302,33 +312,12 @@ namespace RPSLS
                 {
                     RunRound();
                     DisplayScoreboard();
-                    currentRound++;
                     Console.Clear();
                 }
             }
-
-            if(currentRound == numberOfRoundsToPlay)
-            {
-                Console.WriteLine("FINAL ROUND!!");
-                Console.WriteLine("-------------");
-                RunRound();
-
-                if (playerOne.score > numberOfRoundsToPlay / 2 || playerTwo.score > numberOfRoundsToPlay / 2)
-                {
-                    if (playerOne.score > playerTwo.score)
-                    {
-                        gameWinner = playerOne.name;
-                    }
-                    else if (playerTwo.score > playerOne.score)
-                    {
-                        gameWinner = playerTwo.name;
-                    }
-                }
-
-                DisplayScoreboard();
-                DisplayGameWinner();
-                Console.Read();
-            }
+            DisplayScoreboard();
+            DisplayGameWinner();
+            Console.Read();
         }
 
         public void RunRound()
@@ -336,7 +325,6 @@ namespace RPSLS
             GetGestures(playerOne);
             GetGestures(playerTwo);
             EvaluateGestures();
-            //Console.Read();
         }
     }
 }
