@@ -279,6 +279,14 @@ namespace RPSLS
             Console.ReadLine();
         }
 
+        public void CheckNumberOfRounds()
+        {
+            if(numberOfRoundsToPlay < 3)
+            {
+                numberOfRoundsToPlay = 3;
+            }
+        }
+
         public void RunGame()
         {
             DisplayWelcome();
@@ -292,6 +300,7 @@ namespace RPSLS
             DisplayPlayerNames();
             Console.Read();
             GetNumberOfRounds();
+            CheckNumberOfRounds();
 
             while(currentRound <= numberOfRoundsToPlay)
             {
