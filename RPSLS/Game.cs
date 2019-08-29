@@ -13,6 +13,8 @@ namespace RPSLS
         public int currentRound = 0;
         public string gameWinner;
         public string roundWinner;
+        public string playAgain;
+        public bool isComplete = false;
         Player playerOne;
         Player playerTwo;
         List<string> gestureOptions;
@@ -326,7 +328,9 @@ namespace RPSLS
             }
             DisplayScoreboard();
             DisplayGameWinner();
+            isComplete = true;
             Console.Read();
+            PlayAgain();
         }
 
         public void RunRound()
@@ -334,6 +338,25 @@ namespace RPSLS
             GetGestures(playerOne);
             GetGestures(playerTwo);
             EvaluateGestures();
+        }
+
+        public void PlayAgain()
+        {
+            Console.Clear();
+            Console.WriteLine("Would you care to play again?");
+            playAgain = Console.ReadLine().ToLower();
+            Console.Read();
+
+            if(playAgain == "yes")
+            {
+                isComplete = false;
+                currentRound = 0;
+                RunGame();
+            }
+            else if(playAgain == "no")
+            {
+                return;
+            }
         }
     }
 }

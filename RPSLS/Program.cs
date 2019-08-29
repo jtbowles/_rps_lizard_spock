@@ -10,8 +10,22 @@ namespace RPSLS
     {
         static void Main(string[] args)
         {
+            //List<string> pastGameWinners = new List<string>();
             Game game = new Game();
             game.RunGame();
+
+            //if(game.isComplete == true)
+            //{
+            //    game.PlayAgain();
+            //    pastGameWinners.Add(game.gameWinner);
+            //}
+
+            //if(game.playAgain == "yes")
+            //{
+            //    game = new Game();
+            //}
+
+
         }
     }
 }
