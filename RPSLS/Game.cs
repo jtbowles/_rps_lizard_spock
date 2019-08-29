@@ -9,6 +9,10 @@ namespace RPSLS
     public class Game
     {
         public int numberOfPlayers;
+        public int numberOfRoundsToPlay = 3;
+        public int currentRound = 0;
+        public string gameWinner;
+        public string roundWinner;
         Player playerOne;
         Player playerTwo;
         List<string> gestureOptions;
@@ -30,22 +34,20 @@ namespace RPSLS
 
         public void DisplayScoreboard()
         {
-            Console.WriteLine("SCORE SHEET");
-            Console.WriteLine("------------");
+            Console.Clear();
+            Console.WriteLine("SCORE SHEET after {0} of {1} rounds" , currentRound, numberOfRoundsToPlay);
+            Console.WriteLine("-----------------------------");
             Console.WriteLine("{0}'s score: {1}", playerOne.name, playerOne.score);
             Console.WriteLine("{0}'s score: {1}", playerTwo.name, playerTwo.score);
+            Console.WriteLine("-----------------------------");
+            Console.Beep();
             Console.ReadLine();
         }
 
-        public void GetGestures()
+        public void GetGestures(Player player)
         {
-            playerOne.ChooseGesture(gestureOptions);
+            player.ChooseGesture(gestureOptions);
             Console.Clear();
-
-            playerTwo.ChooseGesture(gestureOptions);
-            Console.Clear();
-            Console.WriteLine("Player one's gesture is {0} | Player two's gesture is {1}", playerOne.gesture, playerTwo.gesture);
-            Console.ReadLine();
         }
 
         public void EvaluateGestures()
@@ -56,13 +58,13 @@ namespace RPSLS
                     if(playerTwo.gesture == "scissors" || playerTwo.gesture == "lizard")
                     {
                         playerOne.score++;
-                        Console.WriteLine("Player 1 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if(playerTwo.gesture == "paper" || playerTwo.gesture == "spock")
                     {
                         playerTwo.score++;
-                        Console.WriteLine("Player 2 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
                     else
@@ -75,13 +77,13 @@ namespace RPSLS
                     if (playerTwo.gesture == "rock" || playerTwo.gesture == "spock")
                     {
                         playerOne.score++;
-                        Console.WriteLine("Player 1 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "scissors" || playerTwo.gesture == "lizard")
                     {
                         playerTwo.score++;
-                        Console.WriteLine("Player 2 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
                     else
@@ -94,13 +96,13 @@ namespace RPSLS
                     if (playerTwo.gesture == "paper" || playerTwo.gesture == "lizard")
                     {
                         playerOne.score++;
-                        Console.WriteLine("Player 1 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "rock" || playerTwo.gesture == "spock")
                     {
                         playerTwo.score++;
-                        Console.WriteLine("Player 2 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
                     else
@@ -113,13 +115,13 @@ namespace RPSLS
                     if (playerTwo.gesture == "spock" || playerTwo.gesture == "paper")
                     {
                         playerOne.score++;
-                        Console.WriteLine("Player 1 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "rock" || playerTwo.gesture == "scissors")
                     {
                         playerTwo.score++;
-                        Console.WriteLine("Player 2 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
                     else
@@ -132,13 +134,13 @@ namespace RPSLS
                     if (playerTwo.gesture == "scissors" || playerTwo.gesture == "rock")
                     {
                         playerOne.score++;
-                        Console.WriteLine("Player 1 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerOne.name, playerOne.gesture, playerTwo.gesture);
                         Console.ReadLine();
                     }
                     else if (playerTwo.gesture == "lizard" || playerTwo.gesture == "paper")
                     {
                         playerTwo.score++;
-                        Console.WriteLine("Player 2 wins!");
+                        Console.WriteLine("{0} wins! {1} beats {2}", playerTwo.name, playerTwo.gesture, playerOne.gesture);
                         Console.ReadLine();
                     }
                     else
@@ -199,20 +201,25 @@ namespace RPSLS
 
         }
 
-
-
         public void DisplayListOfGestures()
         {
             Console.WriteLine("----------------------------------------------------------------------------------");
             Console.WriteLine("You will get the opportunity to choose your gesture between each of the following:");
             Console.WriteLine("----------------------------------------------------------------------------------");
 
+            gestureOptions.ForEach(Console.WriteLine);
 
-            foreach (string gestures in gestureOptions)
-            {
-                Console.WriteLine(gestures);
-            }
+            //for(int i = 0; i < gestureOptions.Count; i++)
+            //{
+            //    Console.WriteLine();
+            //}
             Console.ReadLine();
+
+            //foreach (string gestures in gestureOptions)
+            //{
+            //    Console.WriteLine(gestures);
+            //    Console.ReadLine();
+            //}
         }
 
         public void DisplayWelcome()
@@ -221,6 +228,7 @@ namespace RPSLS
             Console.WriteLine("WELCOME TO Rock-Paper-Scissors-Lizard-Spock!!!");
             Console.WriteLine("----------------------------------------------");
             Console.Read();
+            Console.Beep();
             Console.Clear();
         }
 
@@ -246,6 +254,21 @@ namespace RPSLS
             Console.ReadLine();
         }
 
+        public void GetNumberOfRounds()
+        {
+            Console.Clear();
+            Console.WriteLine("How many rounds would you like to play?");
+            Console.WriteLine("*minimum best of 3*");
+            numberOfRoundsToPlay = int.Parse(Console.ReadLine());
+            Console.Clear();
+        }
+
+        public void DisplayGameWinner()
+        {
+            Console.WriteLine("{0} won the game!", gameWinner);
+            Console.ReadLine();
+        }
+
         public void RunGame()
         {
             DisplayWelcome();
@@ -253,15 +276,67 @@ namespace RPSLS
             GetNumberOfPlayers();
             DisplayNumberOfPlayers();
             DisplayListOfGestures();
+            Console.ReadLine();
+            Console.Clear();
             GeneratePlayers();
             DisplayPlayerNames();
             Console.Read();
-            GetGestures();
+            GetNumberOfRounds();
+
+            while(currentRound < numberOfRoundsToPlay)
+            {
+                if(playerOne.score > numberOfRoundsToPlay / 2 || playerTwo.score > numberOfRoundsToPlay / 2)
+                {
+                    if(playerOne.score > playerTwo.score)
+                    {
+                        gameWinner = playerOne.name;
+                        break;
+                    }
+                    else if (playerTwo.score > playerOne.score)
+                    {
+                        gameWinner = playerTwo.name;
+                        break;
+                    }
+                }
+                else
+                {
+                    RunRound();
+                    DisplayScoreboard();
+                    currentRound++;
+                    Console.Clear();
+                }
+            }
+
+            if(currentRound == numberOfRoundsToPlay)
+            {
+                Console.WriteLine("FINAL ROUND!!");
+                Console.WriteLine("-------------");
+                RunRound();
+
+                if (playerOne.score > numberOfRoundsToPlay / 2 || playerTwo.score > numberOfRoundsToPlay / 2)
+                {
+                    if (playerOne.score > playerTwo.score)
+                    {
+                        gameWinner = playerOne.name;
+                    }
+                    else if (playerTwo.score > playerOne.score)
+                    {
+                        gameWinner = playerTwo.name;
+                    }
+                }
+
+                DisplayScoreboard();
+                DisplayGameWinner();
+                Console.Read();
+            }
+        }
+
+        public void RunRound()
+        {
+            GetGestures(playerOne);
+            GetGestures(playerTwo);
             EvaluateGestures();
-
-            Console.Read();
-
-
+            //Console.Read();
         }
     }
 }

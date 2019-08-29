@@ -8,9 +8,14 @@ namespace RPSLS
 {
     public class Computer : Player
     {
+        public Random random;
+        public int index;
+
         public override void ChooseGesture(List<string> gestureOptions)
         {
-            throw new NotImplementedException();
+            random = new Random();
+            index = random.Next(gestureOptions.Count);
+            gesture = gestureOptions[index];
         }
 
         public override void ChooseName()

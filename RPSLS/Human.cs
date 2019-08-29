@@ -10,7 +10,7 @@ namespace RPSLS
     {
         public override void ChooseGesture(List<string> gestureOptions)
         {
-            Console.WriteLine("Please choose the speific gesture you want to use:");
+            Console.WriteLine("{0}, please choose the speific gesture you want to use:",name);
             Console.WriteLine("-----------------------------------");
 
             foreach (string gesture in gestureOptions)
@@ -18,7 +18,7 @@ namespace RPSLS
                 Console.WriteLine(gesture);
             }
             Console.WriteLine("-----------------------------------");
-            gesture = Console.ReadLine();
+            gesture = Console.ReadLine().ToLower();
         }
 
         public override void ChooseName()
