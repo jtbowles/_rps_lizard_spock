@@ -18,6 +18,7 @@ namespace RPSLS
 
         public void GetNumberOfPlayers()
         {
+            Console.WriteLine("-----------------------------------");
             Console.WriteLine("How many players would like to play?");
             Console.WriteLine("Enter [1] or [2]");
             Console.WriteLine("-----------------------------------");
@@ -44,51 +45,57 @@ namespace RPSLS
 
         public void DisplayListOfGestures()
         {
+            Console.WriteLine("----------------------------------------------------------------------------------");
             Console.WriteLine("You will get the opportunity to choose your gesture between each of the following:");
+            Console.WriteLine("----------------------------------------------------------------------------------");
+
 
             foreach (string gestures in gestureOptions)
             {
                 Console.WriteLine(gestures);
             }
             Console.Read();
-            Console.Clear();
         }
 
-        public void DisplayGameRules()
+        public void DisplayWelcome()
         {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("WELCOME TO Rock-Paper-Scissors-Lizard-Spock!!!");
             Console.WriteLine("----------------------------------------------");
             Console.Read();
             Console.Clear();
+        }
 
+        public void DisplayGameRules()
+        {
+            Console.WriteLine("-------------------------------------");
             Console.WriteLine("The rules of the game are as follows:");
             Console.WriteLine("-------------------------------------");
             Console.WriteLine("[1] Rock crushes [3] Scissors");
             Console.WriteLine("[1] Rock crushes [4] Lizard");
-
+            Console.WriteLine();
             Console.WriteLine("[2] Paper covers [1] Rock");
             Console.WriteLine("[2] Paper disproves [5] Spock");
-
+            Console.WriteLine();
             Console.WriteLine("[3] Scissors cuts [2] Paper");
             Console.WriteLine("[3] Scissors decapitates [4] Lizard");
-
+            Console.WriteLine();
             Console.WriteLine("[4] Lizard poisons [5] Spock");
             Console.WriteLine("[4] Lizard eats [2] Paper");
-
+            Console.WriteLine();
             Console.WriteLine("[5] Spock smashes [3] Scissors");
             Console.WriteLine("[5] Spock vaporizes [1] Rock");
             Console.Read();
-            Console.Clear();
         }
 
         public void RunGame()
         {
+            DisplayWelcome();
             DisplayGameRules();
             GetNumberOfPlayers();
             DisplayNumberOfPlayers();
             DisplayListOfGestures();
-
+            Console.Read();
         }
     }
 }
