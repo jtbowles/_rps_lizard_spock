@@ -15,9 +15,10 @@ namespace RPSLS
 
         public override void ChooseName()
         {
+            Console.WriteLine("----------------------------");
             Console.WriteLine("Enter the computer's name:");
             name = Console.ReadLine();
-            Console.Clear();
+
         }
     }
 }
