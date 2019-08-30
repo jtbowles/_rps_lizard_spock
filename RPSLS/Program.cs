@@ -10,6 +10,7 @@ namespace RPSLS
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             //List<string> pastGameWinners = new List<string>();
             Game game = new Game();
             game.RunGame();
