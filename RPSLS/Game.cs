@@ -283,9 +283,22 @@ namespace RPSLS
         public void GetNumberOfRounds()
         {
             Console.Clear();
-            Console.WriteLine("How many rounds would you like to play?");
-            Console.WriteLine("*minimum best of 3*");
-            numberOfRoundsToPlay = int.Parse(Console.ReadLine());
+            Console.WriteLine("-------------------------------------------------------------");
+            Console.WriteLine("Enter an ODD NUMBER for the amount of rounds you wish to play");
+            Console.WriteLine("                    *minimum best of 3*");
+            Console.WriteLine("-------------------------------------------------------------");
+
+            try
+            {
+                numberOfRoundsToPlay = int.Parse(Console.ReadLine());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.ReadLine();
+                GetNumberOfRounds();
+                throw;
+            }
             Console.Clear();
         }
 
@@ -297,12 +310,12 @@ namespace RPSLS
 
         public void CheckNumberOfRounds()
         {
-            if(numberOfRoundsToPlay < 3)
+            if(numberOfRoundsToPlay < 3 || numberOfRoundsToPlay % 2 == 0)
             {
                 numberOfRoundsToPlay = 3;
-                Console.WriteLine("-------------------------------------------------------------");
-                Console.WriteLine("Number of rounds chosen was too low. Initialized to 3 rounds.");
-                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("------------------------------------------------------------------------------");
+                Console.WriteLine("Number of rounds chosen was too low or an even number. Initialized to 3 rounds.");
+                Console.WriteLine("------------------------------------------------------------------------------");
             }
         }
 
@@ -320,8 +333,8 @@ namespace RPSLS
             Console.Read();
             GetNumberOfRounds();
             CheckNumberOfRounds();
-            Console.ReadLine();
-            Console.Clear();
+            //Console.ReadLine();
+            //Console.Clear();
 
             while (currentRound <= numberOfRoundsToPlay)
             {
