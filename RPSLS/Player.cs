@@ -12,6 +12,7 @@ namespace RPSLS
         public string gesture = "";
         public int score = 0;
 
+
         public abstract void ChooseGesture(List<string> gestureOptions);
         public abstract void ChooseName();
     }

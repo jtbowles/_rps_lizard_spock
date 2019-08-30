@@ -8,28 +8,34 @@ namespace RPSLS
 {
     public class Human : Player
     {
+        public string whichPlayer;
+
+        public Human(string player)
+        {
+            whichPlayer = player;
+        }
+
         public override void ChooseGesture(List<string> gestureOptions)
         {
-            Console.WriteLine("{0}, please choose the speific gesture you want to use:",name);
-            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("  ----------------------------------------------------------");
+            Console.WriteLine("   {0}, please enter the speific gesture you want to use:",name);
+            Console.WriteLine("  ----------------------------------------------------------");
 
             foreach (string gesture in gestureOptions)
             {
-                Console.WriteLine(gesture);
+                Console.WriteLine("     " + gesture);
             }
-            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("  ----------------------------------------------------------");
 
 
             gesture = Console.ReadLine().ToLower();
-            // try catch for ints
-            // !gesture then reprompt
         }
 
         public override void ChooseName()
         {
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("Please enter your player name:");
-            Console.WriteLine("------------------------------");
+            Console.WriteLine(" -------------------------------------------");
+            Console.WriteLine("  {0}, please enter your player name:", whichPlayer);
+            Console.WriteLine(" -------------------------------------------");
             name = Console.ReadLine();
         }
     }
