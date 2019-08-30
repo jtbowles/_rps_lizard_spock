@@ -22,6 +22,8 @@ namespace RPSLS
         {
             Console.WriteLine("----------------------------");
             Console.WriteLine("Enter the computer's name:");
+            Console.WriteLine("----------------------------");
+
             name = Console.ReadLine();
 
         }

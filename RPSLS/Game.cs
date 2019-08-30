@@ -52,16 +52,19 @@ namespace RPSLS
             Console.Clear();
         }
 
-        //public void CheckGestures(Player player)
-        //{
-        //    for (int i = 0; i < gestureOptions.Count; i++)
-        //    {
-        //        if(player.gesture != gestureOptions[i])
-        //        {
-
-        //        }
-        //    }
-        //}
+        public void CheckGestures(Player player)
+        {
+            while (!gestureOptions.Contains(player.gesture))
+            {
+                Console.WriteLine("-------------------------------");
+                Console.WriteLine("Please enter a proper response.");
+                Console.WriteLine("-------------------------------");
+                Console.ReadLine();
+                Console.Clear();
+                player.ChooseGesture(gestureOptions);
+                Console.Clear();
+            }
+        }
 
         public void EvaluateGestures()
         {
@@ -352,7 +355,9 @@ namespace RPSLS
         public void RunRound()
         {
             GetGestures(playerOne);
+            CheckGestures(playerOne);
             GetGestures(playerTwo);
+            CheckGestures(playerTwo);
             EvaluateGestures();
         }
 

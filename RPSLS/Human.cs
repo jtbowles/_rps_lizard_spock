@@ -18,6 +18,8 @@ namespace RPSLS
                 Console.WriteLine(gesture);
             }
             Console.WriteLine("-----------------------------------");
+
+
             gesture = Console.ReadLine().ToLower();
             // try catch for ints
             // !gesture then reprompt
@@ -27,6 +29,7 @@ namespace RPSLS
         {
             Console.WriteLine("------------------------------");
             Console.WriteLine("Please enter your player name:");
+            Console.WriteLine("------------------------------");
             name = Console.ReadLine();
         }
     }
