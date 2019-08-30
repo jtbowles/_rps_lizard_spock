@@ -11,24 +11,45 @@ namespace RPSLS
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            //List<string> pastGameWinners = new List<string>();
+
+            List<string> pastGameWinners = new List<string>();
+
             Game game = new Game();
-            game.RunGame();
 
-            //if(game.isComplete == true)
-            //{
-            //    game.PlayAgain();
-            //    pastGameWinners.Add(game.gameWinner);
-            //}
+            while (game.isComplete == false)
+            {
+                game.RunGame();
+                game.PlayAgain();
 
-            //if(game.playAgain == "yes")
-            //{
-            //    game = new Game();
-            //}
-            //bool gameOn = true;
+                if (game.playAgain)
+                {
+                    pastGameWinners.Add(game.gameWinner);
+                    game = new Game();
+                }
+                else if (!game.playAgain)
+                {
+                    pastGameWinners.Add(game.gameWinner);
+                    PrintPastGameWinners(pastGameWinners);
+                    game.isComplete = true;
+                }
+                Console.ReadLine();
+                Console.Clear();
+            }
+            Console.WriteLine("  ------------------------------");
+            Console.WriteLine("  Thank you for playing my game!");
+            Console.WriteLine("  ------------------------------");
+            Console.ReadLine();
+        }
 
-
-
+        private static void PrintPastGameWinners(List<string> pastGameWinners)
+        {
+            Console.Clear();
+            foreach (string winner in pastGameWinners)
+            {
+                Console.WriteLine(" -------------------------------------------------");
+                Console.WriteLine("  Past Winner {0} : {1}",pastGameWinners.IndexOf(winner) + 1, winner);
+                Console.WriteLine(" -------------------------------------------------");
+            }
         }
     }
 }

@@ -13,14 +13,17 @@ namespace RPSLS
         public int currentRound = 0;
         public string gameWinner;
         public string roundWinner;
-        public string playAgain;
-        public bool isComplete = false;
+        public bool playAgain;
+        public bool isComplete;
+        public string userInput;
+        public string userInputToLower;
         Player playerOne;
         Player playerTwo;
         List<string> gestureOptions;
 
         public Game()
         {
+            isComplete = false;
             CreateListOfGestures();
         }
 
@@ -38,8 +41,12 @@ namespace RPSLS
             catch (Exception e)
             {
                 Console.Clear();
-                Console.WriteLine(e.Message);
-                Console.WriteLine("please enter a proper response");
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("  " + e.Message);
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("     please enter a proper response");
+                Console.WriteLine(" ----------------------------------------");
+                Console.WriteLine("        press [enter] to continue");
                 Console.ReadLine();
                 Console.Clear();
                 GetNumberOfPlayers();
@@ -87,9 +94,10 @@ namespace RPSLS
         {
             while (!gestureOptions.Contains(player.gesture))
             {
-                Console.WriteLine(" --------------------------------");
-                Console.WriteLine("  Please enter a proper response.");
-                Console.WriteLine(" --------------------------------");
+                Console.WriteLine(" --------------------------------------");
+                Console.WriteLine("  Please enter an appropriate response.");
+                Console.WriteLine(" --------------------------------------");
+                Console.WriteLine("       press [enter] to continue");
                 Console.ReadLine();
                 Console.Clear();
                 player.ChooseGesture(gestureOptions);
@@ -252,6 +260,8 @@ namespace RPSLS
                     }
                     break;
                 default:
+                    Console.WriteLine("You found an Easter Egg!");
+                    Console.ReadLine();
                     break;
             }
         }
@@ -274,8 +284,11 @@ namespace RPSLS
 
         public void SetPlayerName(Player player)
         {
-            player.ChooseName();
-            Console.Clear();
+            while(player.name == "")
+            {
+                player.ChooseName();
+                Console.Clear();
+            }
         }
 
         public void DisplayPlayerNames()
@@ -385,9 +398,9 @@ namespace RPSLS
 
         public void DisplayGameWinner()
         {
-            Console.WriteLine(" ------------------------------");
-            Console.WriteLine("  {0} won the game!", gameWinner);
-            Console.WriteLine(" ------------------------------");
+            Console.WriteLine("  ------------------------------");
+            Console.WriteLine("  Congrats {0}! You won the game!", gameWinner);
+            Console.WriteLine("  ------------------------------");
         }
 
         public void CheckNumberOfRounds()
@@ -444,9 +457,7 @@ namespace RPSLS
             DisplayScoreboard();
             Console.Clear();
             DisplayGameWinner();
-            isComplete = true;
             Console.Read();
-            //PlayAgain();
         }
 
         public void RunRound()
@@ -461,19 +472,31 @@ namespace RPSLS
         public void PlayAgain()
         {
             Console.Clear();
-            Console.WriteLine("Would you care to play again?");
-            playAgain = Console.ReadLine().ToLower();
+            Console.WriteLine(" ------------------------------");
+            Console.WriteLine("  Would you care to play again?");
+            Console.WriteLine(" ------------------------------");
+            Console.WriteLine("      enter [yes] or [no]");
             Console.Read();
+            userInput = Console.ReadLine();
+            userInputToLower = userInput.ToLower();
 
-            if(playAgain == "yes")
+            if(userInputToLower == "yes")
             {
-                isComplete = false;
-                currentRound = 0;
-                RunGame();
+                playAgain = true;
             }
-            else if(playAgain == "no")
+            else if(userInputToLower == "no")
             {
-                return;
+                playAgain = false;
+            }
+            else /*if (userInput != "yes" || userInput != "no")*/
+            {
+                Console.Clear();
+                Console.WriteLine(" --------------------------------------");
+                Console.WriteLine("  Please select an appropriate response");
+                Console.WriteLine(" --------------------------------------");
+                Console.WriteLine("      press [enter] to continue");
+                Console.Read();
+                PlayAgain();
             }
         }
     }
