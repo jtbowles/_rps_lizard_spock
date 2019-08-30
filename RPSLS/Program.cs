@@ -24,6 +24,8 @@ namespace RPSLS
             //{
             //    game = new Game();
             //}
+            //bool gameOn = true;
+
 
 
         }

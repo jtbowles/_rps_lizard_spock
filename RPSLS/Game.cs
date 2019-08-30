@@ -52,6 +52,17 @@ namespace RPSLS
             Console.Clear();
         }
 
+        //public void CheckGestures(Player player)
+        //{
+        //    for (int i = 0; i < gestureOptions.Count; i++)
+        //    {
+        //        if(player.gesture != gestureOptions[i])
+        //        {
+
+        //        }
+        //    }
+        //}
+
         public void EvaluateGestures()
         {
             switch (playerOne.gesture)
@@ -286,6 +297,9 @@ namespace RPSLS
             if(numberOfRoundsToPlay < 3)
             {
                 numberOfRoundsToPlay = 3;
+                Console.WriteLine("-------------------------------------------------------------");
+                Console.WriteLine("Number of rounds chosen was too low. Initialized to 3 rounds.");
+                Console.WriteLine("-------------------------------------------------------------");
             }
         }
 
@@ -303,8 +317,10 @@ namespace RPSLS
             Console.Read();
             GetNumberOfRounds();
             CheckNumberOfRounds();
+            Console.ReadLine();
+            Console.Clear();
 
-            while(currentRound <= numberOfRoundsToPlay)
+            while (currentRound <= numberOfRoundsToPlay)
             {
                 if(playerOne.score > numberOfRoundsToPlay / 2 || playerTwo.score > numberOfRoundsToPlay / 2)
                 {
@@ -330,7 +346,7 @@ namespace RPSLS
             DisplayGameWinner();
             isComplete = true;
             Console.Read();
-            PlayAgain();
+            //PlayAgain();
         }
 
         public void RunRound()

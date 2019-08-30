@@ -19,6 +19,8 @@ namespace RPSLS
             }
             Console.WriteLine("-----------------------------------");
             gesture = Console.ReadLine().ToLower();
+            // try catch for ints
+            // !gesture then reprompt
         }
 
         public override void ChooseName()
